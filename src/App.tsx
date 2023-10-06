@@ -1,10 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import catalogJson from "./assets/catalog.json";
+import "./App.css";
+import ProjectCards from "./ProjectCard";
+
+const catalog = catalogJson as CitizenScienceFeed;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -28,8 +32,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <ProjectCards />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
