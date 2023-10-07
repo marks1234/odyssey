@@ -7,6 +7,7 @@ import Login from "./mauno/login.tsx";
 import Register from "./mauno/register.tsx";
 import ProjectPage from "./ProjectPage.tsx";
 import NavBar from "./marco/navbar/navbar.tsx";
+import Userpage from "./mauno/userpage.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "userpage",
+    element: <Userpage />
   },
   {
     path: "project/:id",
