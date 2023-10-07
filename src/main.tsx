@@ -8,7 +8,9 @@ import Login from "./mauno/login.tsx";
 import Register from "./mauno/register.tsx";
 import ProjectPage from "./ProjectPage.tsx";
 import NavBar from "./marco/navbar/navbar.tsx";
-import Userpage from "./mauno/userpage.tsx";
+import UserPage from "./mauno/userpage.tsx";
+import "./index.css";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,8 +25,8 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "userpage",
-    element: <Userpage />
+    path: "profile",
+    element: <UserPage />,
   },
   {
     path: "project/:id",
@@ -39,6 +41,8 @@ function useThemeUpdate() {
     const root = document.documentElement;
     if (root) {
       root.setAttribute("data-bs-theme", theme);
+      root.querySelector("body").style.backgroundColor =
+        theme === "light" ? "#ebefff" : "#1a1a1a";
     }
   }, [theme]);
 }

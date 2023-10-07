@@ -10,7 +10,10 @@ function useCatalog(id?: string) {
       .map((p) => ({ ...p, match_percent: Math.random() * 100 }))
       .sort((a, b) => b.match_percent - a.match_percent);
   }
-  return catalog._project.find((project) => project.project_id === id);
+  return {
+    ...catalog._project.find((project) => project.project_id === id),
+    match_percent: 90 + Math.random() * 10,
+  };
 }
 
 export default useCatalog;

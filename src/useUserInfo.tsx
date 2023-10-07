@@ -21,6 +21,7 @@ function useUserInfo() {
   useEffect(() => {
     if (!uid) {
       setUserInfo(null);
+      setLoading(false);
       return;
     }
 
@@ -40,7 +41,7 @@ function useUserInfo() {
     return () => unsubscribe();
   }, [uid]);
 
-  return userInfo;
+  return { ...userInfo, loading };
 }
 
 export default useUserInfo;
