@@ -40,7 +40,11 @@ export const ProjectCard: React.FC<{ project: Project; index: number }> = ({
         <Card.Header>
           <div className="row align-items-center">
             <div className="text-start col-sm-11">
-              <Card.Title>{project.project_name}</Card.Title>
+              <Card.Title
+                dangerouslySetInnerHTML={{
+                  __html: project.project_name,
+                }}
+              ></Card.Title>
               <a
                 href={project.project_url_external}
                 target="_blank"
@@ -59,9 +63,11 @@ export const ProjectCard: React.FC<{ project: Project; index: number }> = ({
         </Card.Header>
       </Link>
       <Card.Body>
-        <Card.Text>
-          {truncateString(project.project_description, 220)}
-        </Card.Text>
+        <Card.Text
+          dangerouslySetInnerHTML={{
+            __html: truncateString(project.project_description, 220),
+          }}
+        ></Card.Text>
         <div className="row">
           <div className="text-start col-sm-6 align-items-center d-flex">
             <Stack direction="horizontal" gap={2}>
