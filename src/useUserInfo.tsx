@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { auth } from "./firebase";
+import { db, useAuth } from "./firebase";
+import { doc, onSnapshot } from "@firebase/firestore";
 
 interface User {
   name: string | null;
@@ -8,25 +9,33 @@ interface User {
 }
 
 function useUserInfo() {
-  const [user, setUser] = useState<User | null>(null);
+  const [userInfo, setUserInfo] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
+
+  const { user } = useAuth();
+  const uid = user?.uid;
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setUser({
-          name: authUser.displayName,
-          email: authUser.email,
-          photoURL: authUser.photoURL,
-        });
-      } else {
-        setUser(null);
+    if (!uid) return;
+
+    const userRef = doc(db, `users/${uid}`);
+
+    const unsubscribe = onSnapshot(
+      userRef,
+      (snapshot) => {
+        setUserInfo(snapshot.data() as User);
+        setLoading(false);
+      },
+      (err) => {
+        setError(err);
+        setLoading(false);
       }
-    });
-
+    );
     return () => unsubscribe();
-  }, []);
+  }, [uid]);
 
-  return user;
+  return userInfo;
 }
 
 export default useUserInfo;
