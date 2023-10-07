@@ -3,13 +3,12 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
-import ProjectPage from "./ProjectPage.tsx";
 import { ThemeProvider, useTheme } from "./ThemeContext.tsx";
-import NavBar from "./marco/navbar/navbar.tsx";
 import Login from "./mauno/login.tsx";
 import Register from "./mauno/register.tsx";
 import ProjectPage from "./ProjectPage.tsx";
 import NavBar from "./marco/navbar/navbar.tsx";
+import Userpage from "./mauno/userpage.tsx";
 const router = createBrowserRouter([
   {
     path: "/",

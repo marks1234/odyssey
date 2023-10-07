@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
 import useCatalog from "./useCatalog";
-import { Badge, Button, Card, Container, Stack } from "react-bootstrap";
+import { Badge, Button, Card, Container, Modal, Stack } from "react-bootstrap";
 import "./App.css";
 import { Link } from "react-router-dom";
-import NavBar from "./marco/navbar/navbar";
+import Login from "./mauno/login";
 
 
 const ProjectPage: React.FC<{ }> = ({  })  => {

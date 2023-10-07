@@ -29,8 +29,8 @@
     color: #ffffff; 
   }
 
-/* Styling specific to the placement of navbar elements */
-.navbar .navbar-brand {
+
+  .navbar .navbar-brand {
     position: absolute; /* To center the logo */
     left: 50%;
     transform: translateX(-50%);

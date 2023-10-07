@@ -1,12 +1,10 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import { useAuth } from "../firebase";
 import "./App.css";
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 export const Register = () => {
   const auth = useAuth();
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,9 +24,6 @@ export const Register = () => {
         userData.firstName,
         userData.lastName
       )
-      .then(() => {
-        navigate("/");
-      });
   };
 
   return (
@@ -75,15 +70,14 @@ export const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit">Register</button>
+          <Button type="submit">Register</Button>
         </form>
-        <button
+        <Button
           className="googleLogin"
           onClick={auth.signInWithProvider(new GoogleAuthProvider())}
         >
           Login with Google
-        </button>
-        <Link to="/login">Already have an account? Login Here.</Link>
+        </Button>
       </div>
     </div>
   );

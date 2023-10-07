@@ -5,6 +5,8 @@ import { Button, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { useTheme } from "../../ThemeContext";
 import "./navbar.css";
+import LoginModal from "../../daniela/modal/login";
+import RegisterModal from "../../daniela/modal/register";
 
 function NavBar({}: {}) {
   const [show, setShow] = useState(false);
@@ -26,10 +28,11 @@ function NavBar({}: {}) {
             <Nav.Link href="/">odyssey</Nav.Link>
           </Navbar.Brand>
 
-          {/* <Nav.Link href="/" className='mx-auto'>odyssey</Nav.Link> */}
           <Nav>
-            <Nav.Link href="/login">login</Nav.Link>
-            <Nav.Link href="/register">signup</Nav.Link>
+			<LoginModal />
+			<RegisterModal />
+            {/* <Nav.Link href="/register">signup</Nav.Link> */}
+			
             <Button onClick={toggleTheme} variant="outline-primary">
               {theme === "light" ? (
                 <FontAwesomeIcon icon={faMoon} />

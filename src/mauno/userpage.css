@@ -1,3 +1,7 @@
+:root{
+    --nav-color: #05204A;
+}
+
 body{
     background:#eee;
 }
@@ -33,7 +37,7 @@ body{
     top:0;
     width:4px;
     height:100%;
-    background-color:#8E24AA;
+    background-color:#bc4899;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
