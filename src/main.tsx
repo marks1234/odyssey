@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./mauno/login.tsx";
 import Register from "./mauno/register.tsx";
+import ProjectPage from "./ProjectPage.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "project/:id",
+    element: <ProjectPage />,
   },
 ]);
 

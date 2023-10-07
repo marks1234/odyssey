@@ -1,10 +1,9 @@
 import React from "react";
 import { Badge, Button, Card, Stack } from "react-bootstrap";
-import catalogRaw from "./assets/catalog.json";
+import { Link } from "react-router-dom";
+import useCatalog from "./useCatalog";
 
-const catalog = catalogRaw as CitizenScienceFeed;
-
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <Card
       style={{ marginBottom: "20px", width: "100%" }}
@@ -12,7 +11,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     >
       <Card.Header>{project.start_date}</Card.Header>
       <Card.Body>
-        <Card.Title>{project.project_name}</Card.Title>
+        <Card.Title>
+          <Link to={`project/${project.project_id}`}>
+            {project.project_name}
+          </Link>
+        </Card.Title>
         <Card.Text>
           {truncateString(project.project_description, 220)}
         </Card.Text>
@@ -61,11 +64,12 @@ function toTitleCase(str: string) {
 }
 
 const ProjectCards: React.FC = () => {
+  const projects = useCatalog() as Project[];
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      {catalog._project.map((project, index) => (
+      {projects.map((project, index) => (
         <ProjectCard key={index} project={project} />
       ))}
     </div>
