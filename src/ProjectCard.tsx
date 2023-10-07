@@ -1,23 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
+import { Badge, Button, Card, Stack } from "react-bootstrap";
 import catalogRaw from "./assets/catalog.json";
 
 const catalog = catalogRaw as CitizenScienceFeed;
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
-    <div style={{ border: "1px solid #ddd", padding: "15px", margin: "10px" }}>
-      <h3>{project.project_name}</h3>
-      <ReadMore text={project.project_description} maxLength={200}></ReadMore>
-      <a
-        href={project.project_url_external}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Visit Project
-      </a>
-    </div>
+    <Card
+      style={{ marginBottom: "20px", width: "100%" }}
+      className="text-start"
+    >
+      <Card.Header>{project.start_date}</Card.Header>
+      <Card.Body>
+        <Card.Title>{project.project_name}</Card.Title>
+        <Card.Text>
+          {truncateString(project.project_description, 220)}
+        </Card.Text>
+        <div className="row">
+          <div className="text-start col-sm-6 align-items-center d-flex">
+            <Stack direction="horizontal" gap={2}>
+              {project.participation_tasks
+                .split(", ")
+                .slice(0, 5)
+                .map((task, index) => (
+                  <Badge key={index} bg="primary" pill>
+                    {toTitleCase(task)}
+                  </Badge>
+                ))}
+            </Stack>
+          </div>
+          <div className="text-end col-sm-6">
+            <a
+              href={project.project_url_external}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="secondary">Visit Project</Button>
+            </a>
+          </div>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
+
+function toTitleCase(str: string) {
+  return str
+    .split(",")
+    .map((item) =>
+      item
+        .trim()
+        .replace(/_/g, " ")
+        .split(" ")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ")
+    )
+    .join(", ");
+}
 
 const ProjectCards: React.FC = () => {
   return (
@@ -31,33 +72,11 @@ const ProjectCards: React.FC = () => {
   );
 };
 
-const ReadMore = ({ text, maxLength }: { text: string; maxLength: number }) => {
-  const [showFullText, setShowFullText] = useState(false);
-
-  if (text.length <= maxLength) {
-    return <span>{text}</span>;
+function truncateString(str: string, length: number) {
+  if (str.length <= length) {
+    return str;
   }
-
-  const buttonStyle = {
-    fontSize: "0.75rem", // smaller font size
-    padding: "3px 5px", // reduced padding
-    margin: "0 5px", // some margin around the button
-    cursor: "pointer", // hand cursor on hover
-    border: "1px solid #ccc", // border
-    borderRadius: "3px", // rounded corners
-  };
-
-  return (
-    <span>
-      {showFullText ? text : `${text.substring(0, maxLength)}... `}
-      <button
-        onClick={() => setShowFullText(!showFullText)}
-        style={buttonStyle}
-      >
-        {showFullText ? "Read Less" : "Read More"}
-      </button>
-    </span>
-  );
-};
+  return str.substring(0, length - 3) + "...";
+}
 
 export default ProjectCards;

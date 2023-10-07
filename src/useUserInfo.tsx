@@ -17,7 +17,10 @@ function useUserInfo() {
   const uid = user?.uid;
 
   useEffect(() => {
-    if (!uid) return;
+    if (!uid) {
+      setUserInfo(null);
+      return;
+    }
 
     const userRef = doc(db, `users/${uid}`);
 

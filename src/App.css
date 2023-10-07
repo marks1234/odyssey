@@ -1,0 +1,22 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.side {
+  flex-basis: 20%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.middle {
+  flex-basis: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+}
