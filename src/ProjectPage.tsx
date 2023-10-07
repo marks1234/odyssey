@@ -4,6 +4,7 @@ import useCatalog from "./useCatalog";
 import { Badge, Button, Card, Container, Stack } from "react-bootstrap";
 import "./App.css";
 import { Link } from "react-router-dom";
+import NavBar from "./marco/navbar/navbar";
 
 
 const ProjectPage: React.FC<{ }> = ({  })  => {
@@ -44,6 +45,13 @@ const ProjectPage: React.FC<{ }> = ({  })  => {
 
         <Card.Text>
         Target audience: {ToTitleCase(project.participant_age)}
+        </Card.Text>
+        
+        <Card.Text>
+        Skills required: {ToTitleCase(project.participation_tasks)}
+        </Card.Text>
+        <Card.Text>
+        Start date: {project.start_date}
         </Card.Text>
         <div className="row">
           <div className="text-start col-sm-6 align-items-center d-flex">

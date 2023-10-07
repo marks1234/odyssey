@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar, Button, Nav, Offcanvas } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 function NavBar() {
 	const [show, setShow] = useState(false);
@@ -17,7 +18,13 @@ function NavBar() {
 						{/* This is a basic 3-line "hamburger" icon. You can replace with an icon component or image */}
 						&#9776;
 					</Nav.Link>
-					<Navbar.Brand className='mx-auto'>odyssey</Navbar.Brand>
+					<Navbar.Brand className='mx-auto'>
+						<Nav.Link href="/" >
+						odyssey
+						</Nav.Link>						
+					</Navbar.Brand>
+
+					{/* <Nav.Link href="/" className='mx-auto'>odyssey</Nav.Link> */}
 				<Nav>
 					<Nav.Link href="/login">login</Nav.Link>
 					<Nav.Link href="/register">signup</Nav.Link>

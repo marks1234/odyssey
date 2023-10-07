@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./mauno/login.tsx";
 import Register from "./mauno/register.tsx";
 import ProjectPage from "./ProjectPage.tsx";
+import NavBar from "./marco/navbar/navbar.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <NavBar />
     <RouterProvider router={router} />
+
   </React.StrictMode>
 );

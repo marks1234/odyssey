@@ -8,7 +8,7 @@ import "./marco/navbar/navbar.css";
 function App() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="container">
         <section className="side">
           <UserProfileCard />
