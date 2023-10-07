@@ -1,5 +1,10 @@
 // Import the functions you need from the SDKs you need
-import { AuthProvider, User, getAuth } from "@firebase/auth";
+import {
+  AuthProvider,
+  User,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "@firebase/auth";
 import { initializeApp } from "firebase/app";
 import { useEffect, useState } from "react";
 import { signInWithPopup } from "firebase/auth";
@@ -51,6 +56,17 @@ export const useAuth = () => {
       });
   };
 
+  const signInWithUsernamePassword = (email: string, password: string) => {
+    return () =>
+      signInWithEmailAndPassword(auth, email, password).then((result) => {
+        setDoc(doc(db, "users", result.user.uid), {
+          name: result.user?.displayName,
+          email: result.user?.email,
+          photoURL: result.user?.photoURL,
+        });
+      });
+  };
+
   const loggedIn = user != null;
 
   return {
@@ -60,5 +76,6 @@ export const useAuth = () => {
     signOut,
     loggedIn,
     signInWithProvider,
+    signInWithUsernamePassword,
   };
 };
