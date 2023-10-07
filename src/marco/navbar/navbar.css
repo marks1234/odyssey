@@ -45,5 +45,8 @@
 
 .extraNav{
     margin-left: 10px;
+}
 
+.spacings{
+    justify-content: space-between;
 }

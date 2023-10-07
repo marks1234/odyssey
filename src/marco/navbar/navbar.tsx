@@ -46,12 +46,20 @@ function NavBar({}: {}) {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body className="spacings">
           {/* Contents similar to GitHub's slide-out window can be placed here */}
-          <p>User page</p>
-          <p>Projects</p>
-          <p>Resources</p>
-          <p>API</p>
+          {/* <p>User page</p> */}
+
+          {/* <div className="container"> */}
+            <div className="row">
+              <a href="/userpage">Profile</a>
+              <a href="/">Projects</a>
+              <a href="https://www.citizenscience.gov/catalog/#">Resources</a>
+              <a href="https://www.citizenscience.gov/feed.json">API</a>
+            </div>
+          {/* </div> */}
+          {/* <p>Resources</p> */}
+          {/* <p>API</p> */}
         </Offcanvas.Body>
       </Offcanvas>
     </>

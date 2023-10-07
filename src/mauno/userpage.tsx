@@ -2,9 +2,9 @@ import "./userpage.css";
 
 export const Userpage = () => {
     return (
-        <div className="container mt-5">
-            <div className="row d-flex justify-content-center">
-                <div className="col-md-7">
+        <div className="container mt-3">
+            {/* <div className="row d-flex justify-content-center"> */}
+                <div className="col-md-4">
                     <div className="card p-3 py-4">
                         <div className="text-center">
                             <img src="IMAGE TO ADD" width="100" className="rounded-circle" alt="User"/>
@@ -30,7 +30,7 @@ export const Userpage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     )
 }
