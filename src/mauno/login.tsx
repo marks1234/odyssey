@@ -1,5 +1,12 @@
+import { Button } from "react-bootstrap";
 import "./App.css";
+import useUserInfo from "../useUserInfo";
+import { useAuth } from "../firebase";
+import { GoogleAuthProvider } from "firebase/auth";
+import { Link } from "react-router-dom";
 export const Login = () => {
+  let auth = useAuth();
+
   return (
     <div className="App">
       <div className="auth-form-container">
@@ -7,7 +14,7 @@ export const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            placeholder="youremail@gmail.com"
+            placeholder="yourmail@mail.com"
             id="email"
             name="email"
           />
@@ -22,9 +29,16 @@ export const Login = () => {
 
           <button>Log In</button>
         </form>
-        <button className="link-btn">
-          Don't have an account? Register Here.
+        <button className="googleLogin"
+          onClick={auth.signInWithProvider(new GoogleAuthProvider())}
+          >
+          Login with Google
         </button>
+          <div>
+        <Link to="/register">
+          Don't have an account? Register Here.
+        </Link>
+      </div>
       </div>
     </div>
   );

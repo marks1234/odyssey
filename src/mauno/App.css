@@ -47,6 +47,9 @@ button {
   margin-top: 12px;
 }
 
+.googleLogin{
+  background-color: #00d23c;
+}
 button:hover {
   background-color: #005AD4;
 }

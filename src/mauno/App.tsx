@@ -1,10 +1,11 @@
 import "./App.css";
+import Login from "./login";
 //import Login from "./mauno/login";
 import Register from "./register";
 
 
 function App() {
- // return <Login/>
+//  return <Login/>
   return <Register/>
 }
 export default App;

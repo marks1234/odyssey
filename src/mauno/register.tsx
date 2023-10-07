@@ -1,5 +1,10 @@
+import { GoogleAuthProvider } from "firebase/auth";
+import { auth, useAuth } from "../firebase";
 import "./App.css";
+import { Link } from "react-router-dom";
 export const Register = () => {
+  let auth = useAuth();
+
   return (
     <div className="App">
       <div className="auth-form-container">
@@ -7,7 +12,7 @@ export const Register = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            placeholder="youremail@gmail.com"
+            placeholder="yourmail@mail.com"
             id="email"
             name="email"
           />
@@ -38,9 +43,14 @@ export const Register = () => {
 
           <button>Register</button>
         </form>
-        <button className="link-btn">
-          Already have an account? Login Here.
+        <button className="googleLogin"
+          onClick={auth.signInWithProvider(new GoogleAuthProvider())}
+        >
+          Login with Google
         </button>
+        <Link to="/register">
+        Already have an account? Login Here.
+        </Link>        
       </div>
     </div>
   );

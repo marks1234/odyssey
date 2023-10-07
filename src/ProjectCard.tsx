@@ -27,7 +27,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
                 .slice(0, 5)
                 .map((task, index) => (
                   <Badge key={index} bg="primary" pill>
-                    {toTitleCase(task)}
+                    {ToTitleCase(task)}
                   </Badge>
                 ))}
             </Stack>
@@ -47,7 +47,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   );
 };
 
-function toTitleCase(str: string) {
+function ToTitleCase(str: string) {
   return str
     .split(",")
     .map((item) =>
