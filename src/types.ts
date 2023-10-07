@@ -25,4 +25,5 @@ interface Project {
   scistarter: string;
   email: string;
   start_date: string;
+  match_percent: number;
 }

@@ -9,7 +9,10 @@ import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "@firebase/firestore";
 import { db } from "./firebase";
 
-export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+export const ProjectCard: React.FC<{ project: Project; index: number }> = ({
+  project,
+  index,
+}) => {
   const user = useUserInfo();
   const hasJoined = user?.projects?.includes(project.project_name);
 
@@ -37,7 +40,11 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         <Card.Header>
           <div className="row align-items-center">
             <div className="text-start col-sm-11">
-              <Card.Title>{project.project_name}</Card.Title>
+              <Card.Title
+                dangerouslySetInnerHTML={{
+                  __html: project.project_name,
+                }}
+              ></Card.Title>
               <a
                 href={project.project_url_external}
                 target="_blank"
@@ -49,16 +56,18 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             </div>
             <div className="text-end col-sm-1">
               <CircularProgressBar
-                percentage={Math.random() * 100}
+                percentage={project.match_percent}
               ></CircularProgressBar>
             </div>
           </div>
         </Card.Header>
       </Link>
       <Card.Body>
-        <Card.Text>
-          {truncateString(project.project_description, 220)}
-        </Card.Text>
+        <Card.Text
+          dangerouslySetInnerHTML={{
+            __html: truncateString(project.project_description, 220),
+          }}
+        ></Card.Text>
         <div className="row">
           <div className="text-start col-sm-6 align-items-center d-flex">
             <Stack direction="horizontal" gap={2}>
@@ -83,8 +92,6 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   );
 };
 
-function toggleJoinProject(project: Project) {}
-
 function ToTitleCase(str: string) {
   return str
     .split(",")
@@ -108,7 +115,7 @@ const ProjectCards: React.FC = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       {projects.map((project, index) => (
-        <ProjectCard key={index} project={project} />
+        <ProjectCard key={index} project={project} index={index} />
       ))}
     </div>
   );
