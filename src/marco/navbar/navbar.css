@@ -41,3 +41,9 @@
     display: flex;
     align-items: center; /* To vertically align the three-line icon */
 }
+
+
+.extraNav{
+    margin-left: 10px;
+
+}

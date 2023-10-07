@@ -48,3 +48,16 @@ button:hover {
   color: #E8E8E8;
   text-decoration: underline;
 }
+
+.custom-button {
+  color: white;
+  background-color: transparent;
+  border: none; 
+  outline: none; 
+  cursor: pointer;
+  transition: color 0.3s ease; 
+}
+
+.custom-button:hover {
+  color: #ffffff; 
+}

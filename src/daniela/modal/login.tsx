@@ -14,8 +14,8 @@ function LoginModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Login
+      <Button className='custom-button' onClick={handleShow}>
+        login
       </Button>
 
       <Modal show={show} onHide={handleClose}>

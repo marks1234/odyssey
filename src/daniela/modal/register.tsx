@@ -12,8 +12,8 @@ function RegisterModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Register
+      <Button className='custom-button' onClick={handleShow}>
+        register
       </Button>
 
       <Modal show={show} onHide={handleClose}>

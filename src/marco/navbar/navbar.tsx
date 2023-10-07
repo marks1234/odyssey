@@ -28,12 +28,10 @@ function NavBar({}: {}) {
             <Nav.Link href="/">odyssey</Nav.Link>
           </Navbar.Brand>
 
-          <Nav>
+          <Nav className="paddingNav">
 			<LoginModal />
 			<RegisterModal />
-            {/* <Nav.Link href="/register">signup</Nav.Link> */}
-			
-            <Button onClick={toggleTheme} variant="outline-primary">
+            <Button onClick={toggleTheme} variant="outline-primary" className="extraNav">
               {theme === "light" ? (
                 <FontAwesomeIcon icon={faMoon} />
               ) : (
@@ -50,7 +48,6 @@ function NavBar({}: {}) {
         </Offcanvas.Header>
         <Offcanvas.Body>
           {/* Contents similar to GitHub's slide-out window can be placed here */}
-          {/* Your content here */}
           <p>User page</p>
           <p>Projects</p>
           <p>Resources</p>
