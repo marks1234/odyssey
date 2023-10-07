@@ -2,6 +2,8 @@ import ProjectCards from "./ProjectCard";
 import UserProfileCard from "./UserCard";
 import NavBar from "./marco/navbar/navbar";
 import "./App.css";
+import "./marco/navbar/navbar.css";
+
 
 function App() {
   return (

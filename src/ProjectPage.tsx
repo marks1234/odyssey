@@ -1,26 +1,49 @@
 import React from "react";
-import { ProjectCard } from "./ProjectCard";
 import { useParams } from "react-router";
-
 import useCatalog from "./useCatalog";
-import { Badge, Button, Card, Stack } from "react-bootstrap";
+import { Badge, Button, Card, Container, Stack } from "react-bootstrap";
+import "./App.css";
 import { Link } from "react-router-dom";
+
 
 const ProjectPage: React.FC<{ }> = ({  })  => {
   const project = useCatalog(useParams().id) as Project;
   return (
+    <Container>
+      {/* <section className="image-section"></section> */}
     <Card
       style={{ marginBottom: "20px", width: "100%" }}
       className="text-start"
     >
-      <Card.Header>{project.start_date}</Card.Header>
-      <Card.Body>
+      <Card.Header>
         <Card.Title>
-            {project.project_name}
+          {project.project_name}
         </Card.Title>
+      </Card.Header>
+      <Card.Body>
+
         <Card.Text>
         {project.project_description}
+        </Card.Text>
 
+        <Card.Text>
+        Category: {project.fields_of_science}
+        </Card.Text>
+
+        <Card.Text>
+        Project status: {project.project_status}
+        </Card.Text>
+        
+        <Card.Text>
+        Agency: {project.agency_sponsor}
+        </Card.Text>
+
+        <Card.Text>
+        Location: {project.geographic_scope}
+        </Card.Text>
+
+        <Card.Text>
+        Target audience: {ToTitleCase(project.participant_age)}
         </Card.Text>
         <div className="row">
           <div className="text-start col-sm-6 align-items-center d-flex">
@@ -45,8 +68,15 @@ const ProjectPage: React.FC<{ }> = ({  })  => {
             </a>
           </div>
         </div>
+        <Button>
+        <Link to="/">
+          Back to feed
+        </Link>
+        </Button>
       </Card.Body>
     </Card>
+    </Container>
+
   )
 };
 

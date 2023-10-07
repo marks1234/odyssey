@@ -10,22 +10,22 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       style={{ marginBottom: "20px", width: "100%" }}
       className="text-start"
     >
+    <Link to={`project/${project.project_id}`}>
       <Card.Header>
         <div className="row align-items-center">
           <div className="text-start col-sm-11">
             <Card.Title>
-              <Link to={`project/${project.project_id}`}>
                 {project.project_name}
-              </Link>
             </Card.Title>
           </div>
           <div className="text-end col-sm-1">
             <CircularProgressBar
               percentage={Math.random() * 100}
-            ></CircularProgressBar>
+              ></CircularProgressBar>
           </div>
         </div>
       </Card.Header>
+              </Link>
       <Card.Body>
         <Card.Text>
           {truncateString(project.project_description, 220)}

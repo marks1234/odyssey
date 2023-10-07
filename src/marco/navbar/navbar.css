@@ -1,7 +1,11 @@
-/* CSS */
+:root{
+    --nav-color: #05204A;
+}
+
 .navbar {
     box-sizing: border-box;
     color: rgb(31, 35, 40);
+    background-color: var(--nav-color);
     color-scheme: light;
     column-gap: 12px;
     padding: 16px;
@@ -13,10 +17,17 @@
     row-gap: 12px;
     text-size-adjust: 100%;
     justify-content: space-between; /* To ensure space between the 3 main navbar elements */
-    background-color: #f6f6f6; /* Slightly grayer than white */
     border-bottom: 1px solid #e0e0e0; /* A subtle gray border at the bottom */
     
 }
+
+.navbar .nav-link {
+    color: white;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #ffffff; 
+  }
 
 /* Styling specific to the placement of navbar elements */
 .navbar .navbar-brand {
