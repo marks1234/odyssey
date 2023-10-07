@@ -28,6 +28,9 @@ const UserProfileCard = () => {
       <div className="card-body">
         <h5 className="card-title">{user.name}</h5>
         <p className="card-text">{user.email}</p>
+        {[...(user.projects ?? [])].map((project) => (
+          <li key={project}>{project}</li>
+        ))}
         <Button onClick={auth.signOut}>Logout</Button>
       </div>
     </div>

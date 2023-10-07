@@ -49,21 +49,29 @@ export const useAuth = () => {
   const signInWithProvider = (provider: AuthProvider) => {
     return () =>
       signInWithPopup(auth, provider).then((result) => {
-        setDoc(doc(db, "users", result.user.uid), {
-          name: result.user?.displayName,
-          email: result.user?.email,
-          photoURL: result.user?.photoURL,
-        });
+        setDoc(
+          doc(db, "users", result.user.uid),
+          {
+            name: result.user?.displayName,
+            email: result.user?.email,
+            photoURL: result.user?.photoURL,
+          },
+          { merge: true }
+        );
       });
   };
 
   const signInWithEmailPassword = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password).then((result) => {
-      setDoc(doc(db, "users", result.user.uid), {
-        name: result.user?.displayName,
-        email: result.user?.email,
-        photoURL: result.user?.photoURL,
-      });
+      setDoc(
+        doc(db, "users", result.user.uid),
+        {
+          name: result.user?.displayName,
+          email: result.user?.email,
+          photoURL: result.user?.photoURL,
+        },
+        { merge: true }
+      );
     });
   };
 

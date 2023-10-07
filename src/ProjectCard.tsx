@@ -3,8 +3,31 @@ import { Badge, Button, Card, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useCatalog from "./useCatalog";
 import CircularProgressBar from "./CircularProgressBar/CircularProgressBar";
+import useUserInfo from "./useUserInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "@firebase/firestore";
+import { db } from "./firebase";
 
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const user = useUserInfo();
+  const hasJoined = user?.projects?.includes(project.project_name);
+
+  const toggleJoin = () => {
+    if (!user?.uid) {
+      return;
+    }
+    if (hasJoined) {
+      updateDoc(doc(db, "users", user.uid), {
+        projects: arrayRemove(project.project_name),
+      });
+    } else {
+      updateDoc(doc(db, "users", user.uid), {
+        projects: arrayUnion(project.project_name),
+      });
+    }
+  };
+
   return (
     <Card
       style={{ marginBottom: "20px", width: "100%" }}
@@ -14,14 +37,20 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         <Card.Header>
           <div className="row align-items-center">
             <div className="text-start col-sm-11">
-              <Card.Title>
-                  {project.project_name}
-              </Card.Title>
+              <Card.Title>{project.project_name}</Card.Title>
+              <a
+                href={project.project_url_external}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <FontAwesomeIcon icon={faExternalLink} />
+              </a>
             </div>
             <div className="text-end col-sm-1">
               <CircularProgressBar
                 percentage={Math.random() * 100}
-                ></CircularProgressBar>
+              ></CircularProgressBar>
             </div>
           </div>
         </Card.Header>
@@ -44,19 +73,17 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             </Stack>
           </div>
           <div className="text-end col-sm-6">
-            <a
-              href={project.project_url_external}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="secondary">Visit Project</Button>
-            </a>
+            <Button variant="outline-primary" onClick={toggleJoin}>
+              {hasJoined ? "Leave" : "Join"} project
+            </Button>
           </div>
         </div>
       </Card.Body>
     </Card>
   );
 };
+
+function toggleJoinProject(project: Project) {}
 
 function ToTitleCase(str: string) {
   return str

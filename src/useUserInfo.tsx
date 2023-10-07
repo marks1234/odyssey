@@ -3,9 +3,11 @@ import { db, useAuth } from "./firebase";
 import { doc, onSnapshot } from "@firebase/firestore";
 
 interface User {
+  uid: string;
   name: string | null;
   email: string | null;
   photoURL: string | null;
+  projects: string[] | null;
 }
 
 function useUserInfo() {
@@ -27,7 +29,7 @@ function useUserInfo() {
     const unsubscribe = onSnapshot(
       userRef,
       (snapshot) => {
-        setUserInfo(snapshot.data() as User);
+        setUserInfo({ ...snapshot.data(), uid } as User);
         setLoading(false);
       },
       (err) => {
