@@ -2,6 +2,7 @@
 import {
   AuthProvider,
   User,
+  createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
@@ -56,15 +57,30 @@ export const useAuth = () => {
       });
   };
 
-  const signInWithUsernamePassword = (email: string, password: string) => {
-    return () =>
-      signInWithEmailAndPassword(auth, email, password).then((result) => {
-        setDoc(doc(db, "users", result.user.uid), {
-          name: result.user?.displayName,
-          email: result.user?.email,
-          photoURL: result.user?.photoURL,
-        });
+  const signInWithEmailPassword = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password).then((result) => {
+      setDoc(doc(db, "users", result.user.uid), {
+        name: result.user?.displayName,
+        email: result.user?.email,
+        photoURL: result.user?.photoURL,
       });
+    });
+  };
+
+  const registerEmailPassword = (
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) => {
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (result) => {
+        setDoc(doc(db, "users", result.user.uid), {
+          name: `${firstName} ${lastName}`,
+          email: result.user?.email,
+        });
+      }
+    );
   };
 
   const loggedIn = user != null;
@@ -76,6 +92,7 @@ export const useAuth = () => {
     signOut,
     loggedIn,
     signInWithProvider,
-    signInWithUsernamePassword,
+    signInWithEmailPassword,
+    registerEmailPassword,
   };
 };

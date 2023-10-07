@@ -20,7 +20,11 @@ const UserProfileCard = () => {
   }
   return (
     <div className="card">
-      <img src={user.photoURL ?? ""} className="card-img-top" alt="User" />
+      <img
+        src={user.photoURL ?? "https://placedog.net/200"}
+        className="card-img-top"
+        alt="User"
+      />
       <div className="card-body">
         <h5 className="card-title">{user.name}</h5>
         <p className="card-text">{user.email}</p>
