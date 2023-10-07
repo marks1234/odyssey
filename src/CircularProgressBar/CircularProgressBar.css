@@ -16,12 +16,21 @@
   stroke: #00acc1;
   stroke-width: 2;
   stroke-linecap: round;
-  animation: progress 1s ease-out forwards;
+  stroke-dasharray: var(--hover-percentage), 50;
+  transition: stroke-dasharray 0.5s ease-out; /* This controls the emptying of the circle */
 }
 
-@keyframes progress {
+.circular-progress-bar:hover .circle {
+  stroke-dasharray: 0, 100; /* When hovered, circle empties */
+  animation: fillProgress 1s ease-out 0.5s forwards; /* The fill animation starts after a 0.5s delay */
+}
+
+@keyframes fillProgress {
   0% {
     stroke-dasharray: 0, 100;
+  }
+  100% {
+    stroke-dasharray: var(--hover-percentage), 50;
   }
 }
 

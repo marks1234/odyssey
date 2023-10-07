@@ -4,7 +4,12 @@ import "./CircularProgressBar.css";
 function CircularProgressBar({ percentage }: { percentage: number }) {
   percentage = Math.floor(percentage);
   return (
-    <div className="circular-progress-bar">
+    <div
+      className="circular-progress-bar"
+      style={
+        { "--hover-percentage": `${0.5 * percentage}` } as React.CSSProperties
+      }
+    >
       <svg viewBox="0 0 18 18" className="circular-chart">
         <path
           className="circle-bg"
