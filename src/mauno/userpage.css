@@ -85,17 +85,3 @@ body{
        color:#fff;
         height:40px;
 }
-
-.verified-badge {
-    background-color: #1DA1F2;  /* Twitter-like blue */
-    padding: 4px 8px;
-    border-radius: 15px;
-    display: inline-flex;
-    align-items: center;
-    color: white;
-    font-weight: bold;
-}
-
-.verified-badge i {
-    margin-right: 5px; /* gives some spacing between the icon and the text */
-}
