@@ -8,7 +8,7 @@ import "./navbar.css";
 import LoginModal from "../../daniela/modal/login";
 import RegisterModal from "../../daniela/modal/register";
 
-function NavBar({}: {}) {
+function NavBar() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -25,13 +25,19 @@ function NavBar({}: {}) {
             &#9776;
           </Nav.Link>
           <Navbar.Brand className="mx-auto">
-            <Nav.Link href="/">odyssey</Nav.Link>
+            <Nav.Link href="/">
+              <img src="logo.png" style={{ width: "230px" }} />
+            </Nav.Link>
           </Navbar.Brand>
 
           <Nav className="paddingNav">
-			<LoginModal />
-			<RegisterModal />
-            <Button onClick={toggleTheme} variant="outline-primary" className="extraNav">
+            <LoginModal />
+            <RegisterModal />
+            <Button
+              onClick={toggleTheme}
+              variant="outline-primary"
+              className="extraNav"
+            >
               {theme === "light" ? (
                 <FontAwesomeIcon icon={faMoon} />
               ) : (
@@ -44,19 +50,19 @@ function NavBar({}: {}) {
 
       <Offcanvas show={show} onHide={handleClose} placement="start">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className="spacings">
           {/* Contents similar to GitHub's slide-out window can be placed here */}
           {/* <p>User page</p> */}
 
           {/* <div className="container"> */}
-            <div className="row">
-              <a href="/userpage">Profile</a>
-              <a href="/">Projects</a>
-              <a href="https://www.citizenscience.gov/catalog/#">Resources</a>
-              <a href="https://www.citizenscience.gov/feed.json">API</a>
-            </div>
+          <div className="row">
+            <a href="/profile">Profile</a>
+            <a href="/">Projects</a>
+            <a href="https://www.citizenscience.gov/catalog/#">Resources</a>
+            <a href="https://www.citizenscience.gov/feed.json">API</a>
+          </div>
           {/* </div> */}
           {/* <p>Resources</p> */}
           {/* <p>API</p> */}
